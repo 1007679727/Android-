@@ -1,6 +1,7 @@
 package com.example.chat.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 
@@ -9,17 +10,20 @@ import android.content.SharedPreferences;
  */
 //代理模式（proxy-pattern）&单例模式（singleton-pattern）
 public class SharedPreferencesUtils {
-    private SharedPreferences sharedPreferences;
-    private static SharedPreferencesUtils sharedPreferencesUtils=new SharedPreferencesUtils();
-    private SharedPreferences.Editor editor;
-    private SharedPreferencesUtils(){
-        sharedPreferences= BaseApplication.getAppInstance().getSharedPreferences("config", Activity.MODE_PRIVATE);
+    private static SharedPreferencesUtils sharedPreferencesUtils;
+    private static SharedPreferences sharedPreferences;
+    private static SharedPreferences.Editor editor;
+    private SharedPreferencesUtils(Context context){
+        sharedPreferences= context.getSharedPreferences("config", Activity.MODE_PRIVATE);
         editor=sharedPreferences.edit();
     }
 
 
 
-    public static SharedPreferencesUtils getInstance(){
+    public synchronized static SharedPreferencesUtils getInstance(Context context){
+        if(sharedPreferencesUtils == null) {
+            sharedPreferencesUtils = new SharedPreferencesUtils(context);
+        }
         return sharedPreferencesUtils;
     }
 

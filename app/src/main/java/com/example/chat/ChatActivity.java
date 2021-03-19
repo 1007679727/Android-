@@ -1,5 +1,6 @@
 package com.example.chat;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -39,6 +40,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,6 +70,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 /**
  * Created by FHZ on 2018/8/6.
  */
@@ -77,6 +83,7 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
         AdapterView.OnItemClickListener,
         View.OnTouchListener,
         MsgEditText.MsgEditTextListener {
+    private static final String[] PERMISSION = new String[]{READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE, CAMERA};
 
     private final int PICK_PICTURE = 1;
     private final int PICK_VIDEO = 2;
@@ -98,6 +105,7 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
     public static final int TYPE_NONE = 3;
     public static final String TYPE_IMAGE = "image/*";
     public static final String TYPE_VIDEO = "video/*";
+    private boolean hasPermission = false;
 
     final private String TAG = ChatActivity.class.getSimpleName();
 
@@ -191,6 +199,7 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
         intent.setPackage("com.fhzz.njpsp");
         bindService(intent, serviceConnection, BIND_AUTO_CREATE);
         chatPresenter.updateChatRecordsState(groupId);
+        requestPermission();
     }
 
     private void initViews() {
@@ -339,7 +348,7 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
         groupName = groupInfo.getGROUP_NAME();
         groupMemberNum = custIdList.size() + 1;
         tvTitleBar.setText(groupName + "(" + groupMemberNum + ")");
-        int index = new ArrayList<>(Arrays.asList(groupInfo.getCUST_ID().split(","))).indexOf(SharedPreferencesUtils.getInstance().getString("userId", ""));
+        int index = new ArrayList<>(Arrays.asList(groupInfo.getCUST_ID().split(","))).indexOf(SharedPreferencesUtils.getInstance(this).getString("userId", ""));
         if (-1 != index) {
             if (roleNames.get(index).contains("管理员")) {
 //                imageViewAssignTask.setVisibility(View.VISIBLE);
@@ -351,7 +360,7 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
     @Override
     public void setCommander(String custId) {
         this.commanderId = custId;
-        if (commanderId.equals(SharedPreferencesUtils.getInstance().getString("userId", ""))) {
+        if (commanderId.equals(SharedPreferencesUtils.getInstance(this).getString("userId", ""))) {
 //            imageViewAssignTask.setVisibility(View.VISIBLE);
         }
     }
@@ -492,7 +501,11 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
                 openAlbum(TYPE_VIDEO);
                 break;
             case R.id.textViewChatAddCamera:
-                showPopupWindow();
+                if(hasPermission) {
+                    showPopupWindow();
+                } else {
+                    Toast.makeText(ChatActivity.this, "请授权", Toast.LENGTH_LONG).show();
+                }
                 break;
 //            case R.id.textViewChatAddVideoCall:
 //                imMessage.setReceiver(members);
@@ -925,7 +938,7 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
      * @return
      */
     private int getKeyBoardHeight() {
-        return SharedPreferencesUtils.getInstance().getInt("input_height", 0);
+        return SharedPreferencesUtils.getInstance(this).getInt("input_height", 0);
     }
 
     /**
@@ -990,6 +1003,43 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
             imageViewChatAdd.setVisibility(View.VISIBLE);
             textViewSend.setVisibility(View.GONE);
         }
+    }
+
+    public void requestPermission() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            if (null == getDeniedPms(PERMISSION)) {
+                hasPermission();
+            } else {
+                requestPermissions(PERMISSION, 300);
+            }
+        } else {
+            hasPermission();
+        }
+    }
+
+    private void hasPermission() {
+        hasPermission= true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == 100 ) {
+            hasPermission();
+        } else {
+            Toast.makeText(ChatActivity.this, "请授权", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @SuppressLint("WrongConstant")
+    private String getDeniedPms(String[] permissions) {
+        for (String s : PERMISSION) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (0 != checkSelfPermission(s)) {
+                    return s;
+                }
+            }
+        }
+        return null;
     }
 
 }

@@ -80,7 +80,7 @@ public class HistoryMsgRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request().newBuilder().addHeader("Cookie", "JSESSIONID=" + SharedPreferencesUtils.getInstance().getString("token", "")).build();
+                Request request = chain.request().newBuilder().addHeader("Cookie", "JSESSIONID=" + SharedPreferencesUtils.getInstance(chatActivity.getContext()).getString("token", "")).build();
                 return chain.proceed(request);
             }
         }).build();
