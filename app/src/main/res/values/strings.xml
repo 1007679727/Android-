@@ -1,3 +1,211 @@
 <resources>
-    <string name="app_name">chat</string>
+    <string name="app_name">实战平台</string>
+    <string name="company_name">南京市公安局</string>
+
+    <!--    login-->
+    <string name="login_username_hint">用户名</string>
+    <string name="login_psd_hint">密码</string>
+    <string name="login_forgot_psd">忘记密码？</string>
+    <string name="login_btn">登录</string>
+    <string name="patrol_report">巡防报备</string>
+    <string name="logistics_login">勤务登录</string>
+    <string name="device">装备</string>
+    <string name="training">训练</string>
+    <string name="tactics">战术</string>
+    <string name="police">警力</string>
+    <string name="setting">设置</string>
+    <string name="mobile_logistics">移动勤务</string>
+    <string name="night">夜间</string>
+    <string name="patrol_group">巡防警组</string>
+    <string name="call_num_bind">警组序列号</string>
+    <string name="car_bind">巡逻方式</string>
+    <string name="patrol_car">巡防车辆</string>
+    <string name="patrol_member">巡防组员</string>
+    <string name="patrol_leader">负责人</string>
+    <!--    webrtc-->
+    <string name="im_hungup">挂断</string>
+    <string name="im_switch_camera">切换摄像头</string>
+    <string name="im_mark">实时标注</string>
+    <string name="im_answer">接听</string>
+    <string name="im_refuse">拒绝</string>
+    <string name="mine">我的</string>
+    <string name="message">消息</string>
+    <string name="address_book">通讯录</string>
+
+    <!-- logistics   -->
+    <string name="logistics_select_member">选择组员</string>
+    <string name="logistics_select_confirm">确认</string>
+    <string name="logistics_select_cancel">取消</string>
+    <string name="GIS_circle">GIS框选</string>
+    <string name="responsibility">职责</string>
+    <string name="level">级别</string>
+    <string name="role">角色</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="waitingTxt">正在等待接听。。。</string>
+
+    <string name="logistics_scan">扫一扫</string>
+    <string name="equip_name">装备名称</string>
+    <string name="equip_transfer">移交</string>
+    <string name="equip_return">归还</string>
+
+    <!--    main-->
+    <string name="main_patrol">巡防</string>
+    <string name="main_duty">勤务</string>
+    <string name="main_exchange">交班</string>
+    <string name="main_command">指挥长</string>
+
+    <!--    combat-->
+    <!--car_trajectory-->
+    <string name="trajectory_group_id">警组呼号:</string>
+    <string name="trajectory_duty_time">执勤时段</string>
+    <string name="trajectory_start_time">开始时间:</string>
+    <string name="trajectory_end_time">结束时间:</string>
+    <string name="trajectory_query">查询车辆轨迹</string>
+
+    <!--intelligence judgment    -->
+    <string name="intelligence_none">情报研判已全部处理</string>
+    <string name="intelligence_sign">签收</string>
+    <string name="intelligence_unit">下发单位</string>
+    <string name="intelligence_time">下发时间</string>
+    <string name="intelligence_title">情报标题</string>
+    <string name="intelligence_level">情报等级</string>
+    <string name="intelligence_expiration_date">有效期</string>
+    <string name="intelligence_content">情报内容</string>
+    <string name="intelligence_signed_time">签收时间</string>
+    <string name="intelligence_signed_person">签收人</string>
+
+    <!--handbook    -->
+    <string name="handbook">特警手册</string>
+    <string name="handbook_select">类别选择</string>
+    <string name="handbook_search_hint">特警手册关键词搜索</string>
+
+
+    <!--patrol_inspect -->
+    <string name="inspect_history_search_hint">搜索巡防督查历史</string>
+    <string name="inspection_object">督查对象:</string>
+    <string name="inspector">督查人:</string>
+    <string name="inspection_content">督查内容:</string>
+    <string name="inspect_expand">更多</string>
+    <string name="inspect_hide">收起</string>
+    <string name="inspect_group">督查警组:</string>
+    <string name="inspect_clothes">着装:</string>
+    <string name="inspect_equipment">装备:</string>
+    <string name="inspect_search_hint">请输入要督查的警员和警号</string>
+    <string name="inspect_name">姓名:</string>
+    <string name="inspect_unit">单位:</string>
+    <string name="inspect_job">职务:</string>
+    <string name="inspect_result_nobody">查无此人</string>
+    <string name="inspect_result_not_report">未报备</string>
+    <string name="inspect_result_police_number">未查询到该警号</string>
+    <string name="inspect_result_checkout">合格</string>
+    <string name="inspect_result_failed">不合格</string>
+
+    <!--Institutional_management -->
+    <string name="institutional_unit">单位:</string>
+    <string name="institutional_unit_all">全部单位</string>
+    <string name="institutional_change">修改</string>
+    <string name="institutional_position">位置</string>
+    <string name="institutional_communication">通信</string>
+    <string name="institutional_equipment">装备情况</string>
+    <string name="institutional_member">人数</string>
+    <string name="institutional_member_quick">快反人数</string>
+
+    <!--video_detection -->
+    <string name="detection_face">人脸识别</string>
+    <string name="detection_license">车牌检测</string>
+    <string name="detection_crowd">人群检测</string>
+    <string name="detection_pointer">目标闯入</string>
+
+    <string name="wheel_confirm">确定</string>
+    <string name="wheel_cancel">取消</string>
+
+    <!--公务流转    -->
+    <string name="official_todo">待办公务</string>
+    <string name="official_done">已办公务</string>
+    <string name="official_name">公务名称</string>
+    <string name="official_start_time">开始时间</string>
+    <string name="official_end_time">办结时间</string>
+    <string name="official_content">详情内容</string>
+    <string name="official_origin">公务来源</string>
+    <string name="official_remark">备注</string>
+    <string name="official_finish">办结</string>
+    <string name="official_dispatch">分派</string>
+
+    <!-- 盘查工具-->
+    <string name="check_tool">盘查工具</string>
+    <string name="data_guided">数据导巡</string>
+    <string name="intelligence">情报研判</string>
+    <string name="video_detect">移动卡口</string>
+    <string name="car_track">车辆轨迹</string>
+    <string name="patrol_inspect">巡防督查</string>
+    <string name="euip_manage">装备运用</string>
+    <string name="police_training">特警训练</string>
+    <string name="tactics_play">战术流转</string>
+    <string name="ordinary_patrol">普巡</string>
+    <string name="arms_patrol">武巡</string>
+
+    <!--数据导巡 -->
+    <string name="warning_today">今日预警</string>
+    <string name="warning_history">历史预警</string>
+    <string name="warning_check">查看></string>
+    <string name="warning_checked">已查看</string>
+    <string name="warning_name">姓名:</string>
+    <string name="warning_id">身份证号:</string>
+    <string name="warning_type_name">查证名称:</string>
+    <string name="warning_up">收起</string>
+    <string name="warning_inventory">盘查</string>
+
+    <string name="check_quick">快速查证</string>
+    <string name="check_custom">定制查证</string>
+    <string name="check_search_hint">搜索查证名称</string>
+    <string name="check_start">启动查证</string>
+    <string name="check_cancel">取消查证</string>
+    <string name="check_edit">编辑</string>
+
+    <string name="check_type">查证范围</string>
+    <string name="check_name">查证名称</string>
+    <string name="data_model">数据模型</string>
+    <string name="warning_res">预警资源</string>
+    <string name="check_time">查证时间</string>
+    <string name="check_remark">备注</string>
+    <string name="check_public">公开</string>
+    <string name="check_type_position">位置查证</string>
+    <string name="check_type_behavior">行为查证</string>
+    <string name="check_type_track">轨迹查证</string>
+
+    <string name="model_select">选择模型</string>
+    <string name="map_select">图上选择</string>
+    <string name="work_time">在岗时间</string>
+    <string name="custom_time">自定义时间</string>
+    <string name="remark_hint">可填写备注信息</string>
+    <string name="check_cancel_btn">取消</string>
+    <string name="check_confirm">确认</string>
+
+    <string name="check_person">人员</string>
+    <string name="check_car">车辆</string>
+    <string name="check_area">查证范围</string>
+    <string name="check_area_city">全市</string>
+    <string name="check_area_limited">五公里内</string>
+    <string name="check_level">查证级别</string>
+
+    <string name="check_start_time">开始时间</string>
+    <string name="check_end_time">结束时间</string>
+    <string name="otg_video">外接视频源</string>
+    <string name="detail_btn">详情</string>
+    <string name="start_btn">出发</string>
+    <string name="end_tv">结束</string>
+    <string name="detachment_message">支队会话</string>
+    <string name="group_message">大队会话</string>
+    <string name="participating_units">参加单位</string>
+    <string name="person_number">人数</string>
+    <string name="leader">领导</string>
+    <string name="contact_people">联络人</string>
 </resources>

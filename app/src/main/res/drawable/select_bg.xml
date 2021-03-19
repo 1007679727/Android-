@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+    <!--填充色-->
+    <solid android:color="#fafafa"/>
+    <!--描边-->
+    <stroke
+        android:width="1px"
+        android:color="@color/material_on_background_disabled"
+        />
+</shape>

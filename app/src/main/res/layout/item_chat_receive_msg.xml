@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018-08-30 10:05:11"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/color_707070"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/imageViewChatIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/mine_head"
+        android:layout_below="@id/textViewTime"/>
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imageViewChatIcon"
+        android:layout_alignTop="@id/imageViewChatIcon"
+        android:textSize="12sp"
+        android:textColor="#97999D"/>
+
+    <RelativeLayout
+        android:id="@+id/rlContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewName"
+        android:layout_toRightOf="@id/imageViewChatIcon"
+        android:background="@drawable/msg_receive_unread">
+
+        <TextView
+            android:id="@+id/textViewContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="270dp"
+            android:layout_marginTop="2dp"
+            android:textColor="#000000"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:id="@+id/imageViewChatContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="200dp"
+            android:maxHeight="200dp"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:visibility="gone"
+            android:background="#ffffff"/>
+
+        <ImageView
+            android:id="@+id/imageViewVideoPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageViewChatContent"
+            android:layout_alignLeft="@id/imageViewChatContent"
+            android:layout_alignRight="@id/imageViewChatContent"
+            android:layout_alignTop="@id/imageViewChatContent"
+            android:scaleType="center"
+            android:src="@mipmap/pause"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/imageViewAudioFlash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textViewContent"
+            android:layout_alignLeft="@id/textViewContent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/receive_audio_play_flash"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:id="@+id/rlAudioBar"
+            android:layout_width="@dimen/dp_250"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorAppBac"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ivAudioPlay"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_chat_audio_selector"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:scaleType="centerInside"/>
+
+            <SeekBar
+                android:id="@+id/seekBarAudio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginRight="@dimen/dp_20"
+                android:layout_alignParentRight="true"
+                android:background="@color/colorAppBac"
+                android:maxHeight="@dimen/dp_5"
+                android:minHeight="@dimen/dp_5"
+                android:progressDrawable="@drawable/gis_radius_seek_bar"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/tvAudioTimeLength"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="match_parent"
+                android:text="0″"
+                android:textSize="@dimen/sp_10"
+                android:gravity="center"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textViewAudioLength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textViewContent"
+            android:layout_toRightOf="@id/textViewContent"
+            android:layout_alignBottom="@id/textViewContent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/textViewAudioContent"
+            android:layout_width="@dimen/dp_250"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlAudioBar"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/linearLayoutAudioFlashGroup"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_alignTop="@id/textViewContent"-->
+        <!--android:layout_alignLeft="@id/textViewContent"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:visibilidonegone">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageViewChatAudioFlash1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@mipmap/chat_audio_receive_flash1"/>-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageViewChatAudioFlash2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@mipmap/chat_audio_receive_flash2"/>-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageViewChatAudioFlash3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@mipmap/chat_audio_receive_flash3"/>-->
+
+    <!--</LinearLayout>-->
+
+</RelativeLayout>
