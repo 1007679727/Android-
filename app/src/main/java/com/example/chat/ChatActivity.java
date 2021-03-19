@@ -50,7 +50,9 @@ import com.example.chat.adapter.EmojiGridViewAdapter;
 import com.example.chat.adapter.HistoryMsgRecyclerViewAdapter;
 import com.example.chat.msg.GroupDetailData;
 import com.example.chat.msg.HistoryMsg;
+import com.example.chat.msg.IClient;
 import com.example.chat.msg.IMMessage;
+import com.example.chat.msg.IServer;
 import com.example.chat.util.SharedPreferencesUtils;
 import com.google.gson.Gson;
 

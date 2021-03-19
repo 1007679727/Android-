@@ -1,7 +1,7 @@
 // IServer.aidl
-package com.example.chat;
-import com.example.chat.IClient;
-import com.example.chat.IMMessage;
+package com.example.chat.msg;
+import com.example.chat.msg.IClient;
+import com.example.chat.msg.IMMessage;
 
 // Declare any non-default types here with import statements
 
