@@ -11,7 +11,7 @@
  * 2013-8-22     daishulun      v1.0.0        create
  *
  */
-package com.example.chat;
+package com.example.chat.util;
 
 import android.app.Application;
 import android.content.Context;

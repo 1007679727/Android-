@@ -3,6 +3,9 @@ package com.example.chat;
 import android.content.Context;
 
 
+import com.example.chat.msg.GroupDetailData;
+import com.example.chat.msg.HistoryMsg;
+
 import java.util.List;
 
 /**

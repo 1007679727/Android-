@@ -1,4 +1,4 @@
-package com.example.chat;
+package com.example.chat.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -20,6 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.request.RequestOptions;
 
+import com.example.chat.util.Constant;
+import com.example.chat.msg.HistoryMsg;
+import com.example.chat.IChatActivity;
+import com.example.chat.MsgPicActivity;
+import com.example.chat.R;
+import com.example.chat.util.SharedPreferencesUtils;
+import com.example.chat.VideoPlayActivity;
 import com.example.chat.data.DbManager;
 import com.example.chat.data.dao.ContactBeanDao;
 import com.example.chat.request.CommonRequest;

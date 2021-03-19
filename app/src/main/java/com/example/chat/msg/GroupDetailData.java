@@ -1,4 +1,4 @@
-package com.example.chat;
+package com.example.chat.msg;
 
 /**
  * Created by fhzz on 2018/9/14.

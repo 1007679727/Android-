@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
-import com.example.chat.BaseApplication;
-import com.example.chat.Bean2ParamUtils;
-import com.example.chat.Constant;
+import com.example.chat.util.BaseApplication;
+import com.example.chat.util.Bean2ParamUtils;
+import com.example.chat.util.Constant;
 import com.google.gson.Gson;
 
 import java.io.File;

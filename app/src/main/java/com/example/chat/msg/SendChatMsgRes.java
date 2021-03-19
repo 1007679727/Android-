@@ -1,7 +1,5 @@
 package com.example.chat.msg;
 
-import com.example.chat.HistoryMsg;
-
 public class SendChatMsgRes {
 
     /**

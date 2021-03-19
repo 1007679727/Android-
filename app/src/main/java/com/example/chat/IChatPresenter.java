@@ -2,6 +2,8 @@ package com.example.chat;
 
 import android.media.MediaRecorder;
 
+import com.example.chat.msg.HistoryMsg;
+
 import java.io.File;
 import java.util.List;
 import java.util.Map;

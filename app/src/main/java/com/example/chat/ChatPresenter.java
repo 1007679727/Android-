@@ -7,10 +7,13 @@ import android.os.Message;
 
 
 import com.example.chat.data.DbManager;
+import com.example.chat.msg.HistoryMsg;
 import com.example.chat.msg.SendChatMsgRes;
 import com.example.chat.msg.UploadMsgFileRes;
 import com.example.chat.request.CommonRequest;
 import com.example.chat.request.RequestListener;
+import com.example.chat.util.Constant;
+import com.example.chat.util.DateUtils;
 
 import java.io.File;
 import java.io.IOException;

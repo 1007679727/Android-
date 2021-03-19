@@ -1,4 +1,4 @@
-package com.example.chat;
+package com.example.chat.util;
 
 import java.lang.reflect.Field;
 

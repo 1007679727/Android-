@@ -9,6 +9,7 @@ import android.view.View;
 
 
 import com.example.chat.request.CommonRequest;
+import com.example.chat.util.Constant;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
