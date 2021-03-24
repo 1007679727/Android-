@@ -3,7 +3,13 @@ package com.example.chat.msg;
 public class UploadMsgFileRes {
     /**
      * code : 0
-     * data : {"chatFile":{"chatId":"15767411452828177031040","des":"","fileSize":0,"filename":"20191219153905-67884.jpg","filetype":"jpg","id":"15767411453663957117403","url":"chat/files/chatFiles/2019-12/2019-12-19/27ea62474a9f4f9ba60e243f109334da/1/20191219153905-67884.jpg"},"chatRecord":{"content":"IMG_20190704_110757.jpg","contentLength":"","createTime":"2019-12-19 15:39:05","custId":"1","des":"","groupId":"27ea62474a9f4f9ba60e243f109334da","id":"15767411452828177031040","isDel":"","msgType":"5","specifyRecipients":""}}
+     * data : {"chatFile":{"chatId":"15767411452828177031040",
+     * "des":"","fileSize":0,"filename":"20191219153905-67884.jpg",
+     * "filetype":"jpg","id":"15767411453663957117403",
+     * "url":"chat/files/chatFiles/2019-12/2019-12-19/27ea62474a9f4f9ba60e243f109334da/1/20191219153905-67884.jpg"}
+     * ,"chatRecord":{"content":"IMG_20190704_110757.jpg","contentLength":"",
+     * "createTime":"2019-12-19 15:39:05","custId":"1","des":"","groupId":"27ea62474a9f4f9ba60e243f109334da",
+     * "id":"15767411452828177031040","isDel":"","msgType":"5","specifyRecipients":""}}
      * message : success
      * success : true
      */

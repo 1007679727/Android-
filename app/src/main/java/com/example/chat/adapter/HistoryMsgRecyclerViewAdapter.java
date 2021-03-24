@@ -107,8 +107,9 @@ public class HistoryMsgRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         holder.setIsRecyclable(false);
-        ContactBeanDao contactBeanDao = DbManager.getInstance().getDaoInstant(chatActivity.getContext().getApplicationContext()).getContactBeanDao();
-        String userName = contactBeanDao.queryBuilder().where(ContactBeanDao.Properties.UserId.eq(historyMsgList.get(position).getCustId())).list().get(0).getRealName();
+//        ContactBeanDao contactBeanDao = DbManager.getInstance().getDaoInstant(chatActivity.getContext().getApplicationContext()).getContactBeanDao();
+//        String userName = contactBeanDao.queryBuilder().where(ContactBeanDao.Properties.UserId.eq(historyMsgList.get(position).getCustId())).list().get(0).getRealName();
+        String userName = "a";
         switch (holder.getItemViewType()) {
             case ITEM_TYPE_RECEIVE_MSG:
                 ChatReceiveHolder chatReceiveHolder = (ChatReceiveHolder) holder;
@@ -408,11 +409,11 @@ public class HistoryMsgRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
     @Override
     public int getItemViewType(int position) {
-        if (historyMsgList.get(position).getCustId().equals(DbManager.getInstance().getDaoInstant(chatActivity.getContext().getApplicationContext()).getUserInfoBeanDao().queryBuilder().list().get(0).getUserId() + "")) {
+//        if (historyMsgList.get(position).getCustId().equals(DbManager.getInstance().getDaoInstant(chatActivity.getContext().getApplicationContext()).getUserInfoBeanDao().queryBuilder().list().get(0).getUserId() + "")) {
             return ITEM_TYPE_SEND_MSG;
-        } else {
-            return ITEM_TYPE_RECEIVE_MSG;
-        }
+//        } else {
+//            return ITEM_TYPE_RECEIVE_MSG;
+//        }
     }
 
     class ChatReceiveHolder extends RecyclerView.ViewHolder {

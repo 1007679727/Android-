@@ -23,6 +23,7 @@ import android.os.RemoteException;
 import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -74,6 +75,7 @@ import butterknife.OnClick;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 /**
@@ -85,7 +87,7 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
         AdapterView.OnItemClickListener,
         View.OnTouchListener,
         MsgEditText.MsgEditTextListener {
-    private static final String[] PERMISSION = new String[]{READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE, CAMERA};
+    private static final String[] PERMISSION = new String[]{CAMERA,RECORD_AUDIO,WRITE_EXTERNAL_STORAGE};
 
     private final int PICK_PICTURE = 1;
     private final int PICK_VIDEO = 2;
@@ -241,7 +243,7 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
         public void onServiceConnected(ComponentName name, IBinder service) {
             server = IServer.Stub.asInterface(service);
             chatPresenter.loadHistoryMsg(groupId);
-            textViewSend.setClickable(false);
+//            textViewSend.setClickable(false);
             chatPresenter.loadGroupDetails(groupId);
             try {
                 server.onConnectSuccess(client);

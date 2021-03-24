@@ -17,6 +17,7 @@ import com.example.chat.util.DateUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,38 +32,46 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 public class ChatPresenter implements IChatPresenter {
     final private String TAG = ChatPresenter.class.getSimpleName();
     private IChatActivity chatActivity;
+    private static HistoryMsg historyMsg = new HistoryMsg();
 
     public ChatPresenter(IChatActivity chatActivity) {
         this.chatActivity = chatActivity;
+        HistoryMsg.DataBean dataBean = new HistoryMsg.DataBean();
+        ArrayList arrayList = new ArrayList();
+        dataBean.setRows(arrayList);
+        historyMsg.setData(dataBean);
     }
 
     @Override
     public void loadHistoryMsg(String groupId) {
-        Map<String, String> params = new HashMap<>();
-        params.put("groupId", groupId);
-        params.put("custId", DbManager.getInstance().getDaoInstant(chatActivity.getContext().getApplicationContext()).getUserInfoBeanDao().queryBuilder().list().get(0).getUserId() + "");
-        params.put("pageIndex", "1");
-        params.put("pageSize", "0");
-        CommonRequest.getInstance().post(Constant.IP_COMMAND + "chat/chat/findChatRecordsOfPageByTime", params, "loadHistoryMsg", HistoryMsg.class, new RequestListener() {
-            @Override
-            public void onSuccess(Object o) {
-                HistoryMsg historyMsg = (HistoryMsg) o;
-                Flowable.just(0)
-                        .subscribeOn(AndroidSchedulers.mainThread())
-                        .subscribe(integer -> {
-                            if (historyMsg.isSuccess()) {
-                                if (chatActivity.isActive()) {
-                                    chatActivity.onHistoryMsgLoad(historyMsg.getData().getRows());
-                                }
-                            }
-                        });
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
+//        Map<String, String> params = new HashMap<>();
+//        params.put("groupId", groupId);
+//        params.put("custId", DbManager.getInstance().getDaoInstant(chatActivity.getContext().getApplicationContext()).getUserInfoBeanDao().queryBuilder().list().get(0).getUserId() + "");
+//        params.put("pageIndex", "1");
+//        params.put("pageSize", "0");
+//        CommonRequest.getInstance().post(Constant.IP_COMMAND + "chat/chat/findChatRecordsOfPageByTime", params, "loadHistoryMsg", HistoryMsg.class, new RequestListener() {
+//            @Override
+//            public void onSuccess(Object o) {
+//                HistoryMsg historyMsg = (HistoryMsg) o;
+//                Flowable.just(0)
+//                        .subscribeOn(AndroidSchedulers.mainThread())
+//                        .subscribe(integer -> {
+//                            if (historyMsg.isSuccess()) {
+//                                if (chatActivity.isActive()) {
+//                                    chatActivity.onHistoryMsgLoad(historyMsg.getData().getRows());
+//                                }
+//                            }
+//                        });
+//            }
+//
+//            @Override
+//            public void onError() {
+//
+//            }
+//        });
+        if (chatActivity.isActive()) {
+            chatActivity.onHistoryMsgLoad(historyMsg.getData().getRows());
+        }
     }
 
     private boolean compareTime(String userCreateTime, String create_time) {
@@ -108,69 +117,87 @@ public class ChatPresenter implements IChatPresenter {
 
     @Override
     public void uploadChatMsg(HistoryMsg.DataBean.Row chatMessage) {
-        CommonRequest.getInstance().post(Constant.IP_COMMAND+ "chat/chat/sendChatRecords",chatMessage,"uploadChatMsg", SendChatMsgRes.class,new RequestListener(){
-            @Override
-            public void onSuccess(Object o) {
-                SendChatMsgRes sendChatMsgRes = (SendChatMsgRes) o;
-                if (sendChatMsgRes != null && sendChatMsgRes.isSuccess()) {
-                    Flowable.just(0)
-                            .subscribeOn(AndroidSchedulers.mainThread())
-                            .subscribe(integer -> {
-                                if (chatActivity.isActive()) {
-                                    chatActivity.sendMsg(sendChatMsgRes.getData());
-                                }
-                            });
-
-                }
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
+//        CommonRequest.getInstance().post(Constant.IP_COMMAND+ "chat/chat/sendChatRecords",chatMessage,"uploadChatMsg", SendChatMsgRes.class,new RequestListener(){
+//            @Override
+//            public void onSuccess(Object o) {
+//                SendChatMsgRes sendChatMsgRes = (SendChatMsgRes) o;
+//                if (sendChatMsgRes != null && sendChatMsgRes.isSuccess()) {
+//                    Flowable.just(0)
+//                            .subscribeOn(AndroidSchedulers.mainThread())
+//                            .subscribe(integer -> {
+//                                if (chatActivity.isActive()) {
+//                                    chatActivity.sendMsg(sendChatMsgRes.getData());
+//                                }
+//                            });
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onError() {
+//
+//            }
+//        });
+        List<HistoryMsg.DataBean.Row> list = historyMsg.getData().getRows();
+        chatMessage.setCreateTime(DateUtils.formatTime(System.currentTimeMillis()));
+        list.add(chatMessage);
+        HistoryMsg.DataBean bean = new HistoryMsg.DataBean();
+        bean.setRows(list);
+        historyMsg.setData(bean);
+        if (chatActivity.isActive()) {
+            chatActivity.sendMsg(chatMessage);
+//            chatActivity.onServerResponse(list);
+        }
     }
 
     @Override
     public void uploadFile(Map<String, String> params, File file) {
 
-        CommonRequest.getInstance().upload(Constant.IP_COMMAND + "chat/chat/uploadChatFile", params, file,"uploadData","uploadFile", UploadMsgFileRes.class, new RequestListener() {
-            @Override
-            public void onSuccess(Object o) {
-                UploadMsgFileRes uploadMsgFileRes = (UploadMsgFileRes) o;
+//        CommonRequest.getInstance().upload(Constant.IP_COMMAND + "chat/chat/uploadChatFile", params, file,"uploadData","uploadFile", UploadMsgFileRes.class, new RequestListener() {
+//            @Override
+//            public void onSuccess(Object o) {
+//                UploadMsgFileRes uploadMsgFileRes = (UploadMsgFileRes) o;
+//
+//                HistoryMsg.DataBean.Row chatMessage=new HistoryMsg.DataBean.Row();
+//
+//                chatMessage.setContent(uploadMsgFileRes.getData().getChatRecord().getContent());
+//                chatMessage.setContentLength(uploadMsgFileRes.getData().getChatRecord().getContentLength());
+//                chatMessage.setDes(uploadMsgFileRes.getData().getChatRecord().getDes());
+//                chatMessage.setMsgType(uploadMsgFileRes.getData().getChatRecord().getMsgType());
+//                chatMessage.setGroupId(uploadMsgFileRes.getData().getChatRecord().getGroupId());
+//                chatMessage.setCustId(uploadMsgFileRes.getData().getChatRecord().getCustId());
+//                chatMessage.setCreateTime(uploadMsgFileRes.getData().getChatRecord().getCreateTime());
+//                chatMessage.setUrl(uploadMsgFileRes.getData().getChatFile().getUrl());
+//                chatMessage.setFileDes(uploadMsgFileRes.getData().getChatFile().getDes());
+//                chatMessage.setFileName(uploadMsgFileRes.getData().getChatFile().getFilename());
+//                chatMessage.setFileSize(uploadMsgFileRes.getData().getChatFile().getFileSize());
+//                chatMessage.setFileType(uploadMsgFileRes.getData().getChatFile().getFiletype());
+//                chatMessage.setId(uploadMsgFileRes.getData().getChatRecord().getId());
+//
+//                Flowable.just(0)
+//                        .subscribeOn(AndroidSchedulers.mainThread())
+//                        .subscribe(integer -> {
+//                            if (uploadMsgFileRes.isSuccess()) {
+//                                if (chatActivity.isActive()) {
+//                                    chatActivity.sendMsg(chatMessage);
+//                                }
+//                            }
+//                        });
+//            }
+//
+//            @Override
+//            public void onError() {
+//
+//            }
+//        });
 
-                HistoryMsg.DataBean.Row chatMessage=new HistoryMsg.DataBean.Row();
-
-                chatMessage.setContent(uploadMsgFileRes.getData().getChatRecord().getContent());
-                chatMessage.setContentLength(uploadMsgFileRes.getData().getChatRecord().getContentLength());
-                chatMessage.setDes(uploadMsgFileRes.getData().getChatRecord().getDes());
-                chatMessage.setMsgType(uploadMsgFileRes.getData().getChatRecord().getMsgType());
-                chatMessage.setGroupId(uploadMsgFileRes.getData().getChatRecord().getGroupId());
-                chatMessage.setCustId(uploadMsgFileRes.getData().getChatRecord().getCustId());
-                chatMessage.setCreateTime(uploadMsgFileRes.getData().getChatRecord().getCreateTime());
-                chatMessage.setUrl(uploadMsgFileRes.getData().getChatFile().getUrl());
-                chatMessage.setFileDes(uploadMsgFileRes.getData().getChatFile().getDes());
-                chatMessage.setFileName(uploadMsgFileRes.getData().getChatFile().getFilename());
-                chatMessage.setFileSize(uploadMsgFileRes.getData().getChatFile().getFileSize());
-                chatMessage.setFileType(uploadMsgFileRes.getData().getChatFile().getFiletype());
-                chatMessage.setId(uploadMsgFileRes.getData().getChatRecord().getId());
-
-                Flowable.just(0)
-                        .subscribeOn(AndroidSchedulers.mainThread())
-                        .subscribe(integer -> {
-                            if (uploadMsgFileRes.isSuccess()) {
-                                if (chatActivity.isActive()) {
-                                    chatActivity.sendMsg(chatMessage);
-                                }
-                            }
-                        });
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
+        HistoryMsg.DataBean.Row chatMessage=new HistoryMsg.DataBean.Row();
+        UploadMsgFileRes.DataBean bean = new UploadMsgFileRes.DataBean();
+//                bean.setChatFile(new UploadMsgFileRes.DataBean.ChatFileBean().setUrl(););
+//        new UploadMsgFileRes().setData();
+        if (chatActivity.isActive()) {
+            chatActivity.sendMsg(chatMessage);
+        }
     }
 
     @Override

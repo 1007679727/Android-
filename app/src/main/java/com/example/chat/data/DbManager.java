@@ -19,7 +19,7 @@ public class DbManager {
     }
 
     public void init(Context context) {
-        DbOpenHelper helper = new DbOpenHelper(context, "patrol.db" , null);
+        DbOpenHelper helper = new DbOpenHelper(context, "patrol.dba" , null);
         SQLiteDatabase sqlDB = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(sqlDB);
         daoSession = daoMaster.newSession();
