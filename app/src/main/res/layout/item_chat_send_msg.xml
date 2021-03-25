@@ -16,8 +16,8 @@
 
     <ImageView
         android:id="@+id/imageViewChatIcon"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_below="@id/textViewTime"
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"

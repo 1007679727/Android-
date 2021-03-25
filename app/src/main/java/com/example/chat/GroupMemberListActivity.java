@@ -24,6 +24,9 @@ import butterknife.Unbinder;
 import static com.example.chat.adapter.GroupMemberListAdapter.SELECT_TYPE_MULTIPLE;
 
 
+/**
+ * 成员列表，@时提供跳转支持
+ */
 public class GroupMemberListActivity extends BaseActivity {
     public static final int SELECT_TYPE_SINGLE = 0x0001;
 

@@ -144,10 +144,10 @@ public class ChatPresenter implements IChatPresenter {
         HistoryMsg.DataBean bean = new HistoryMsg.DataBean();
         bean.setRows(list);
         historyMsg.setData(bean);
-        if (chatActivity.isActive()) {
+//        if (chatActivity.isActive()) {
             chatActivity.sendMsg(chatMessage);
 //            chatActivity.onServerResponse(list);
-        }
+//        }
     }
 
     @Override
@@ -192,12 +192,15 @@ public class ChatPresenter implements IChatPresenter {
 //        });
 
         HistoryMsg.DataBean.Row chatMessage=new HistoryMsg.DataBean.Row();
-        UploadMsgFileRes.DataBean bean = new UploadMsgFileRes.DataBean();
+//        UploadMsgFileRes.DataBean bean = new UploadMsgFileRes.DataBean();
 //                bean.setChatFile(new UploadMsgFileRes.DataBean.ChatFileBean().setUrl(););
 //        new UploadMsgFileRes().setData();
-        if (chatActivity.isActive()) {
+        chatMessage.setMsgType(params.get("msgType"));
+        chatMessage.setCreateTime(DateUtils.formatTime(System.currentTimeMillis()));
+        chatMessage.setFileUrl(file.getPath());
+//        if (chatActivity.isActive()) {
             chatActivity.sendMsg(chatMessage);
-        }
+//        }
     }
 
     @Override

@@ -49,12 +49,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chat.adapter.EmojiGridViewAdapter;
 import com.example.chat.adapter.HistoryMsgRecyclerViewAdapter;
+import com.example.chat.data.DbManager;
 import com.example.chat.msg.GroupDetailData;
 import com.example.chat.msg.HistoryMsg;
 import com.example.chat.msg.IClient;
 import com.example.chat.msg.IMMessage;
 import com.example.chat.msg.IServer;
 import com.example.chat.util.SharedPreferencesUtils;
+import com.example.service.MainService;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayInputStream;
@@ -79,7 +81,7 @@ import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 /**
- * Created by FHZ on 2018/8/6.
+ * 聊天的activity
  */
 
 public class ChatActivity extends BaseActivity implements IChatActivity,
@@ -192,15 +194,14 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
 
     private void init() {
 //        userId = DbManager.getInstance().getDaoInstant(getApplicationContext()).getUserInfoBeanDao().queryBuilder().list().get(0).getUserId() + "";
-//        userId = DbManager.getInstance().getDaoInstant(getApplicationContext()).getUserInfoBeanDao().queryBuilder().list().get(0).getUserId() + "";
 //        members = getIntent().getStringArrayListExtra("members");
 //        groupId = getIntent().getStringExtra("groupId");
 //        groupName = getIntent().getStringExtra("groupName");
 //        groupMemberNum = getIntent().getIntExtra("groupMemberNum", 0);
         initViews();
         chatPresenter = new ChatPresenter(this);
-        Intent intent = new Intent("com.fhzz.njpsp.MainService");
-        intent.setPackage("com.fhzz.njpsp");
+        Intent intent = new Intent(this, MainService.class);
+//        intent.setPackage("com.example.service");
         bindService(intent, serviceConnection, BIND_AUTO_CREATE);
         chatPresenter.updateChatRecordsState(groupId);
         requestPermission();
@@ -208,7 +209,7 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
 
     private void initViews() {
 
-        tvTitleBar.setText(groupName + "(" + groupMemberNum + ")");
+        tvTitleBar.setText("testUser" + "(" + groupMemberNum + ")");
         recyclerViewChatMsg.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         historyMsgRecyclerViewAdapter = new HistoryMsgRecyclerViewAdapter(historyMsgList, this);
         recyclerViewChatMsg.setAdapter(historyMsgRecyclerViewAdapter);
@@ -507,8 +508,6 @@ public class ChatActivity extends BaseActivity implements IChatActivity,
             case R.id.textViewChatAddCamera:
                 if(hasPermission) {
                     showPopupWindow();
-                } else {
-                    Toast.makeText(ChatActivity.this, "请授权", Toast.LENGTH_LONG).show();
                 }
                 break;
 //            case R.id.textViewChatAddVideoCall:

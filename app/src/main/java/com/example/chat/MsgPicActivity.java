@@ -2,6 +2,7 @@ package com.example.chat;
 
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Environment;
@@ -32,52 +33,43 @@ public class MsgPicActivity extends BaseActivity {
     }
 
     private void init() {
-        String url = new StringBuilder(Constant.IP_IM).append(getIntent().getStringExtra("url")).toString();
-        String imageName="ORIGIN_"+getIntent().getStringExtra("imageName");
-        File image = new File(new File(Environment.getExternalStorageDirectory() + "/fhzz/shoot"), imageName);
-        Picasso picasso = new Picasso.Builder(this).downloader(new OkHttp3Downloader(CommonRequest.getInstance().getOkHttpClient())).build();
-        if (image.exists()) {
-            picasso.load(image).into(msgPicIV);
-            return;
-        }
-//        GlideUrl glideUrl = new GlideUrl(Constant.reqAddr + url,
-//                new LazyHeaders.Builder().addHeader("Cookie", "JSESSIONID=" + SharedPreferencesUtils.getInstance().getString("token", "")).build());
-//        RequestOptions requestOptions = new RequestOptions().placeholder(R.mipmap.placeholder);
-//        Glide.with(this).asBitmap().load(glideUrl).apply(requestOptions).into(msgPicIV);
-//        OkHttpClient client = new OkHttpClient.Builder()
-//                .sslSocketFactory(createSSLSocketFactory())
-//                .hostnameVerifier(new TrustAllHostnameVerifier())
-//                .connectTimeout(20000L, TimeUnit.MILLISECONDS)
-//                .readTimeout(20000L, TimeUnit.MILLISECONDS)
-//                .build();
-//        Glide.with(this).load(url).into(msgPicIV);
-//        picasso.load(url).into(msgPicIV);
+//        String url = new StringBuilder(Constant.IP_IM).append(getIntent().getStringExtra("url")).toString();
+        String url = getIntent().getStringExtra("url");
+//        String imageName="ORIGIN_"+getIntent().getStringExtra("imageName");
+//        File image = new File(new File(Environment.getExternalStorageDirectory() + "/fhzz/shoot"), imageName);
+//        Picasso picasso = new Picasso.Builder(this).downloader(new OkHttp3Downloader(CommonRequest.getInstance().getOkHttpClient())).build();
+//        if (image.exists()) {
+//            picasso.load(image).into(msgPicIV);
+//            return;
+//        }
 
-        picasso.load(url).into(msgPicIV, new Callback() {
-            @Override
-            public void onSuccess() {
-                Bitmap bitmap = ((BitmapDrawable) msgPicIV.getDrawable()).getBitmap();
+//        picasso.load(url).into(msgPicIV, new Callback() {
+//            @Override
+//            public void onSuccess() {
+//                Bitmap bitmap = ((BitmapDrawable) msgPicIV.getDrawable()).getBitmap();
+//
+//                File dir = new File(Environment.getExternalStorageDirectory() + "/fhzz/shoot");
+//                if (!dir.exists()) {
+//                    dir.mkdir();
+//                }
+//                File file = new File(dir, imageName);
+//                FileOutputStream ostream = null;
+//                try {
+//                    ostream = new FileOutputStream(file);
+//                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, ostream);
+//                    ostream.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//
+//            }
+//        });
+        msgPicIV.setImageBitmap(BitmapFactory.decodeFile(url));
 
-                File dir = new File(Environment.getExternalStorageDirectory() + "/fhzz/shoot");
-                if (!dir.exists()) {
-                    dir.mkdir();
-                }
-                File file = new File(dir, imageName);
-                FileOutputStream ostream = null;
-                try {
-                    ostream = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, ostream);
-                    ostream.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onError(Exception e) {
-
-            }
-        });
         msgPicIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

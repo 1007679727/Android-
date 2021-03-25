@@ -44,6 +44,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MsgPicActivity"></activity>
+        <activity android:name=".GroupMemberListActivity"></activity>
+        <activity android:name=".VideoPlayActivity"></activity>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.chat.fileprovider"
@@ -54,6 +57,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+        <service android:name="com.example.service.MainService"
+            android:process=":data">
+            <intent-filter>
+                <action android:name="com.example.service.MainService"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

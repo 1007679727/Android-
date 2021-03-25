@@ -3,6 +3,7 @@ package com.example.chat.adapter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
@@ -34,6 +35,7 @@ import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -174,7 +176,9 @@ public class HistoryMsgRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
                         chatReceiveHolder.imageViewAudioFlash.setVisibility(View.GONE);
                         chatReceiveHolder.textViewAudioLength.setVisibility(View.GONE);
                         chatReceiveHolder.imageViewVideoPause.setVisibility(View.GONE);
-                        picasso.load(Constant.IP_IM + historyMsgList.get(position).getUrl()).placeholder(R.mipmap.placeholder).transform(new CommonTransformation()).into(chatReceiveHolder.imageViewChatContent);
+                        Bitmap bitmap = BitmapFactory.decodeFile(historyMsgList.get(position).getFileUrl());
+                        chatReceiveHolder.imageViewChatContent.setImageBitmap(bitmap);
+//                        picasso.load(Constant.IP_IM + historyMsgList.get(position).getUrl()).placeholder(R.mipmap.placeholder).transform(new CommonTransformation()).into(chatReceiveHolder.imageViewChatContent);
                         chatReceiveHolder.imageViewChatContent.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -255,12 +259,14 @@ public class HistoryMsgRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 //                    GlideUrl glideUrl = new GlideUrl(Constant.reqAddr + historyMessageItems.get(position).getURL(),
 //                            new LazyHeaders.Builder().addHeader("Cookie", "JSESSIONID=" + SharedPreferencesUtils.getInstance().getString("token", "")).build());
 //                    Glide.with(activity).asBitmap().load(glideUrl).apply(requestOptions).into(chatSendHolder.imageViewChatContent);
-                        picasso.load(Constant.IP_IM + historyMsgList.get(position).getUrl()).placeholder(R.mipmap.placeholder).transform(new CommonTransformation()).into(chatSendHolder.imageViewChatContent);
+//                        picasso.load(Constant.IP_IM + historyMsgList.get(position).getUrl()).placeholder(R.mipmap.placeholder).transform(new CommonTransformation()).into(chatSendHolder.imageViewChatContent);
+                        Bitmap bitmap = BitmapFactory.decodeFile(historyMsgList.get(position).getFileUrl());
+                        chatSendHolder.imageViewChatContent.setImageBitmap(bitmap);
                         chatSendHolder.imageViewChatContent.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(chatActivity.getContext(), MsgPicActivity.class);
-                                intent.putExtra("url", historyMsgList.get(position).getUrl());
+                                intent.putExtra("url", historyMsgList.get(position).getFileUrl());
                                 chatActivity.getContext().startActivity(intent);
                             }
                         });
